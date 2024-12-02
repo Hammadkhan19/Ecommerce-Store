@@ -12,7 +12,7 @@ const port = 3000;
 
 app.use(cors({
   
-  origin: "https://latistore.netlify.app",
+  origin: "https://latistore.vercel.app",
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
