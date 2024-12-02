@@ -13,6 +13,8 @@ const ProductDetails = () => {
   const [selectedColor, setSelectedColor] = useState(null);
   const [selectedSize, setSelectedSize] = useState(null);
   const Base_URL = import.meta.env.VITE_API_URL;
+
+ 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
