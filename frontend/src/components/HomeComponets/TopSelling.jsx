@@ -6,11 +6,11 @@ import { FaStar } from "react-icons/fa";
 const TopSelling = () => {
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(null); // Handle errors
-
+  const Base_URL = import.meta.env.VITE_API_URL;
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("http://localhost:3000/products");
+        const response = await fetch(`${Base_URL}/products`);
         if (!response.ok) throw new Error("Failed to fetch products");
         const data = await response.json();
         setProducts(data.slice(0, 5)); // Limit to the first 5 products
