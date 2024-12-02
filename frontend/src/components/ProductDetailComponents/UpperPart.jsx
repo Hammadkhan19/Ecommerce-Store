@@ -12,11 +12,11 @@ const ProductDetails = () => {
   const [quantity, setQuantity] = useState(1);
   const [selectedColor, setSelectedColor] = useState(null);
   const [selectedSize, setSelectedSize] = useState(null);
-
+  const Base_URL = import.meta.env.VITE_API_URL;
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/products/${id}`);
+        const response = await fetch(`${Base_URL}/products/${id}`);
         if (!response.ok) throw new Error("Failed to fetch product");
 
         const data = await response.json();

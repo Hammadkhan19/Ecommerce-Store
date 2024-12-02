@@ -20,7 +20,7 @@ const AddProduct = () => {
   const [message, setMessage] = useState("");
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
-
+  const Base_URL = import.meta.env.VITE_API_URL;
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -41,7 +41,7 @@ const AddProduct = () => {
     formData.append("image", image);
 
     try {
-      const response = await fetch("http://localhost:3000/addproduct", {
+      const response = await fetch(`${Base_URL}/addproduct`, {
         method: "POST",
         headers: {
           Authorization: `Bearer your_jwt_token_here`,
@@ -71,7 +71,7 @@ const AddProduct = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch("http://localhost:3000/categories");
+        const response = await fetch(`${Base_URL}/categories`);
         if (!response.ok) throw new Error("Failed to fetch categories");
 
         const data = await response.json();

@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, CardBody, Image } from "@nextui-org/react";
-import { FaStar } from "react-icons/fa";
+
 
 const Cards = ({ name, price, image, rating,  }) => {
   const roundedRating = Math.round(rating); // Round the rating to the nearest whole number

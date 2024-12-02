@@ -10,11 +10,11 @@ const LowerPart = () => {
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
   const [visibleReviews, setVisibleReviews] = useState(6);
-
+  const Base_URL = import.meta.env.VITE_API_URL;
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/products/${id}`);
+        const response = await fetch(`${ Base_URL}/products/${id}`);
         if (!response.ok) throw new Error("Failed to fetch reviews");
 
         const data = await response.json();

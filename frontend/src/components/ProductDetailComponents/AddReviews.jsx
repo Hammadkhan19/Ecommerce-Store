@@ -8,12 +8,12 @@ const AddReviews = ({ productId, onNewReview }) => {
   const [comment, setComment] = useState("");
   const [message, setMessage] = useState("");
   const [hasReviewed, setHasReviewed] = useState(false);
-  
+  const Base_URL = import.meta.env.VITE_API_URL;
   useEffect(() => {
     const fetchReviewStatus = async () => {
       if (user) {
         try {
-          const response = await fetch(`http://localhost:3000/reviews/${productId}?userId=${user.userId}`, {
+          const response = await fetch(`${ Base_URL}/reviews/${productId}?userId=${user.userId}`, {
             method: "GET",
             headers: {
               "Authorization": `Bearer ${user.token}` // Include the token in the request headers
@@ -51,7 +51,7 @@ const AddReviews = ({ productId, onNewReview }) => {
     };
 
     try {
-      const response = await fetch("http://localhost:3000/addreview", {
+      const response = await fetch(`${ Base_URL}/addreview`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

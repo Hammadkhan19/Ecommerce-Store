@@ -5,13 +5,13 @@ export const useSignup = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const { dispatch } = useContext(AuthContext);
-
+  const Base_URL = import.meta.env.VITE_API_URL;
   const signup = async (username, email, password) => {
     setIsLoading(true);
     setError(null);
 
     try {
-      const response = await fetch("http://localhost:3000/signup", {
+      const response = await fetch(`${Base_URL}/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, email, password }), // Corrected JSON.stringify

@@ -17,6 +17,7 @@ import {
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Breadcrumb from "../Breadcrumb"
+
 const ProductGrid = () => {
   // sidebar states
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
@@ -29,7 +30,8 @@ const ProductGrid = () => {
   const toggleSidebar = () => {
     setIsSidebarVisible(!isSidebarVisible);
   };
-
+  const Base_URL = import.meta.env.VITE_API_URL;
+ 
   // filter states
   const [filters, setFilters] = useState({
     colors: [],
@@ -47,7 +49,7 @@ const ProductGrid = () => {
 
   // Fetch products data
   useEffect(() => {
-    fetch("http://localhost:3000/products")
+    fetch(`${Base_URL}/products`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch data");
@@ -67,7 +69,7 @@ const ProductGrid = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch("http://localhost:3000/categories");
+        const response = await fetch(`${Base_URL}/categories`);
         if (!response.ok) throw new Error("Failed to fetch categories");
 
         const data = await response.json();
@@ -103,7 +105,7 @@ const ProductGrid = () => {
     console.log("Request Body:", requestBody); // Log the request body being sent
   
     try {
-      const response = await fetch("http://localhost:3000/products/filter", {
+      const response = await fetch(`${Base_URL}products/filter`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
