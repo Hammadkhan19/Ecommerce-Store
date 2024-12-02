@@ -10,7 +10,9 @@ module.exports.create_product = async (req, res) => {
   const sizes = req.body.sizes ? JSON.parse(req.body.sizes) : [];
 
   // Get the image path from the uploaded file
-  const image = req.file ? req.file.filename : null;
+  const image = req.file
+    ? `https://${req.file.path.split("\\").join("/")}`
+    : null;
 
   try {
     // Create a new product instance
@@ -20,14 +22,9 @@ module.exports.create_product = async (req, res) => {
       price,
       colors,
       sizes,
-      image: `https:/${req.file.path.split("/").slice(1).join("/")}`,
+      category,
+      image
     });
-    console.log("Image Path:", req.file.path);
-    console.log(
-      "Full Image URL:",
-      `https://res.cloudinary.com/dc69xtdeu/image/upload/${image}`
-    );
-
     // Save the product to the database
     await product.save();
 
@@ -97,10 +94,7 @@ module.exports.get_productById = async (req, res) => {
     if (!product) return res.status(404).json({ message: "Product not found" });
 
     // Add full image URL to the product
-    res.json({
-      ...product.toObject(),
-      image: `http://localhost:3000/uploads/${product.image}`, // Add image URL
-    });
+    res.json(product);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
