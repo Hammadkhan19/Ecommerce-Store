@@ -10,8 +10,11 @@ require("./db/db");
 const app = express();
 const port = 3000;
 
-// Use CORS middleware
-app.use(cors());
+app.use(cors({
+  origin: "https://latistore.netlify.app/",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 
 app.post("/upload", upload.single("image"), (req, res) => {
   try {
