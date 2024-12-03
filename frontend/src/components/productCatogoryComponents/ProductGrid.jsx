@@ -105,7 +105,7 @@ const ProductGrid = () => {
     console.log("Request Body:", requestBody); // Log the request body being sent
   
     try {
-      const response = await fetch(`${Base_URL}products/filter`, {
+      const response = await fetch(`${Base_URL}/products/filter`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
