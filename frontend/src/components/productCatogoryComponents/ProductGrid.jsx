@@ -28,8 +28,11 @@ const ProductGrid = () => {
 
   // Toggle Sidebar Function
   const toggleSidebar = () => {
-    setIsSidebarVisible(!isSidebarVisible);
+    console.log("Sidebar toggled");
+    setIsSidebarVisible((prevState) => !prevState);
   };
+
+  
   const Base_URL = import.meta.env.VITE_API_URL;
  
   // filter states
@@ -95,11 +98,13 @@ const ProductGrid = () => {
   };
 
   const applyFilters = async () => {
+    setIsSidebarVisible(false)
     const requestBody = {
       colors: filters.colors,
       sizes: filters.sizes,
       priceRange: filters.priceRange,
       categories: filters.categories,
+   
     };
   
     console.log("Request Body:", requestBody); // Log the request body being sent
@@ -208,11 +213,12 @@ const ProductGrid = () => {
       </div>
       {/* Sidebar Container */}
       <div
-        className={`sticky lg:relative lg:mx-8 inset-x-0 bottom-0 h-full lg:h-auto mt-4 lg:w-1/4 bg-gray-100 p-5 rounded-lg flex flex-col space-y-4 transition-transform transform ${
+         className={`fixed lg:relative lg:mx-8 inset-x-0 bottom-0 h-full lg:h-auto mt-4 lg:w-1/4 bg-gray-100 p-5 rounded-lg flex flex-col space-y-4 transition-transform transform ${
           isSidebarVisible ? "translate-y-0" : "translate-y-full"
         } lg:translate-y-0 lg:flex lg:items-start z-50 lg:z-auto max-h-screen lg:max-h-none overflow-y-auto lg:overflow-visible`}
-      >
-        
+    >
+   
+
         {/* Close Button for Mobile View */}
         <div className="flex justify-between items-center lg:hidden">
           <h2 className="text-2xl font-semibold">Filters</h2>
@@ -338,7 +344,7 @@ const ProductGrid = () => {
 
         {/* Apply Filter Button */}
         <Button
-          onClick={applyFilters}
+         onClick={applyFilters}
           auto
           className="bg-black text-white w-full mt-4"
           shadow

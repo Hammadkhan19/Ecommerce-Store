@@ -7,22 +7,25 @@ const ProfileMenu = () => {
   const { user, dispatch } = useContext(AuthContext); // Get user and logout function from context
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleRef = useRef();
+
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+    setIsMenuOpen((prev) => !prev);
   };
 
   const handleLogout = () => {
     localStorage.removeItem("user");
     dispatch({ type: "LOGOUT" });
+    setIsMenuOpen(false); // Close the menu after logout
   };
 
   const handleLoginAsGuest = () => {
     dispatch({ type: "LOGIN_AS_GUEST" });
-    setIsOpen(false);
+    setIsMenuOpen(false); // Close the menu after logging in as a guest
   };
+
   const handleClickOutside = (event) => {
     if (toggleRef.current && !toggleRef.current.contains(event.target)) {
-      setIsOpen(false); // Close the toggle when clicking outside
+      setIsMenuOpen(false); // Close the menu when clicking outside
     }
   };
 

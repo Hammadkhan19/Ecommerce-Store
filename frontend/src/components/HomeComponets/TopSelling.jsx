@@ -55,11 +55,11 @@ const TopSelling = () => {
                 <Card
                   isPressable
                   isHoverable
-                  className="transition-none hover:scale-105 shadow-md w-64"
+                  className="transition-none  hover:scale-105 shadow-md w-64"
                 >
                   <CardBody>
                     <Image
-                      src={`http://localhost:3000/uploads/${product.image}`} // Full image URL
+                      src={product.image} // Full image URL
                       alt={product.title}
                       className="rounded-lg w-full h-48 object-cover"
                     />

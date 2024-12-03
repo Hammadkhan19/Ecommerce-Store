@@ -31,6 +31,7 @@ export default function App() {
     { name: "Shop", key: "shop", path: "/products" },
   ];
 
+
   return (
     <Navbar onMenuOpenChange={setIsMenuOpen}>
       <NavbarMenuToggle
