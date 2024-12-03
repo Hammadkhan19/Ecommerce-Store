@@ -10,13 +10,29 @@ require("./db/db");
 const app = express();
 const port = 3000;
 
-app.use(cors({
-  
-  origin: "https://latistore.vercel.app",
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
-}));
+const allowedOrigins = [
+  "https://latistore.vercel.app", // Production URL
+  "http://localhost:3000"        // Local development URL
+];
 
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // Allow requests with no origin (like mobile apps or Postman)
+      if (!origin) return callback(null, true);
+
+      // Check if the origin is in the allowed list
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      // If origin is not allowed
+      return callback(new Error("Not allowed by CORS"));
+    },
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
+  })
+);
 app.post("/upload", upload.single("image"), (req, res) => {
   try {
     // Access the file URL from Cloudinary
