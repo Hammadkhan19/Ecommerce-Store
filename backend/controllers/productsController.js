@@ -10,9 +10,7 @@ module.exports.create_product = async (req, res) => {
   const sizes = req.body.sizes ? JSON.parse(req.body.sizes) : [];
 
   // Get the image path from the uploaded file
-  const image = req.file
-    ? `https://${req.file.path.split("\\").join("/")}`
-    : null;
+  const image = req.file ? req.file.filename : null;
 
   try {
     // Create a new product instance
@@ -23,7 +21,7 @@ module.exports.create_product = async (req, res) => {
       colors,
       sizes,
       category,
-      image
+      image:`https:/${req.file.path.split("/").slice(1).join("/")}`,
     });
     // Save the product to the database
     await product.save();
