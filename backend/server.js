@@ -12,7 +12,7 @@ const port = 3000;
 
 const allowedOrigins = [
   "https://latistore.vercel.app", // Production URL
-  "http://localhost:3000"        // Local development URL
+  "http://localhost:5173"        // Local development URL
 ];
 
 app.use(
