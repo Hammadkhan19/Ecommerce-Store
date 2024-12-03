@@ -12,7 +12,7 @@ const port = 3000;
 
 app.use(cors({
   
-  origin: "http://localhost:5174",
+  origin: "https://latistore.vercel.app",
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
